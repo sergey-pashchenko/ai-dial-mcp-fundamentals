@@ -5,7 +5,7 @@ from mcp.server.fastmcp import FastMCP
 from models.user_info import UserSearchRequest, UserCreate, UserUpdate
 from user_client import UserClient
 
-#TODO:
+# TODO:
 # 1. Create instance of FastMCP as `mcp` (or another name if you wish) with:
 #       - name is "users-management-mcp-server",
 #       - host is "0.0.0.0",
@@ -14,7 +14,7 @@ from user_client import UserClient
 
 
 # ==================== TOOLS ====================
-#TODO:
+# TODO:
 # You need to add all the tools here. You will need to create 5 async methods and mark them as @mcp.tool() (if you
 # named FastMCP not as `mcp` then use the name that you have used). All tools return `str`.
 # Don't forget about tool description, it will LLM to identify when some particular tool should be used.
@@ -29,7 +29,7 @@ from user_client import UserClient
 
 # ==================== MCP RESOURCES ====================
 
-#TODO:
+# TODO:
 # Provides screenshot with Swagger endpoints of User Service. We need for the case to show you that MCP servers can
 # provide some static resources.
 # https://gofastmcp.com/servers/resources
@@ -43,7 +43,7 @@ from user_client import UserClient
 
 # ==================== MCP PROMPTS ====================
 
-#TODO:
+# TODO:
 # Provides static prompts that can be used by Clients
 # https://gofastmcp.com/servers/prompts
 # ---
@@ -51,12 +51,12 @@ from user_client import UserClient
 
 # Helps users formulate effective search queries
 """
-You are helping users search through a dynamic user database. The database contains 
+You are helping users search through a dynamic user database. The database contains
 realistic synthetic user profiles with the following searchable fields:
 
 ## Available Search Parameters
 - **name**: First name (partial matching, case-insensitive)
-- **surname**: Last name (partial matching, case-insensitive)  
+- **surname**: Last name (partial matching, case-insensitive)
 - **email**: Email address (partial matching, case-insensitive)
 - **gender**: Exact match (male, female, other, prefer_not_to_say)
 
@@ -67,7 +67,7 @@ realistic synthetic user profiles with the following searchable fields:
 - Try common variations: "mike" vs "michael", "liz" vs "elizabeth"
 - Consider cultural name variations
 
-### For Email Searches  
+### For Email Searches
 - Search by domain: "gmail" for all Gmail users
 - Search by name patterns: "john" for emails containing john
 - Use company names to find business emails
@@ -84,7 +84,7 @@ realistic synthetic user profiles with the following searchable fields:
 ## Example Search Patterns
 ```
 "Find all Johns" → name="john"
-"Gmail users named Smith" → email="gmail" + surname="smith"  
+"Gmail users named Smith" → email="gmail" + surname="smith"
 "Female users with company emails" → gender="female" + email="company"
 "Users with Johnson surname" → surname="johnson"
 ```
@@ -96,10 +96,9 @@ realistic synthetic user profiles with the following searchable fields:
 4. Combine multiple criteria for precision
 5. Remember searches are case-insensitive
 
-When helping users search, suggest multiple search strategies and explain 
+When helping users search, suggest multiple search strategies and explain
 why certain approaches might be more effective for their goals.
 """
-
 
 # Guides creation of realistic user profiles
 """
@@ -175,6 +174,6 @@ When creating profiles, aim for diversity in:
 
 
 if __name__ == "__main__":
-    #TODO:
+    # TODO:
     # Run server with `transport="streamable-http"`
     raise NotImplementedError()

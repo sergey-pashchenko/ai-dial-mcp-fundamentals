@@ -1,0 +1,10 @@
+/.dir-locals.el
+/.mypy_cache/
+/.pre-commit-config.yaml
+/.python-version
+/.ruff_cache/
+/.venv/
+/pre-commit-fixme.sh
+/requirements-all.txt
+/requirements-dev.txt
+__pycache__/

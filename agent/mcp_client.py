@@ -16,7 +16,7 @@ class MCPClient:
         self._session_context = None
 
     async def __aenter__(self):
-        #TODO:
+        # TODO:
         # 1. Call `streamablehttp_client` method with `mcp_server_url` and assign to `self._streams_context`
         # 2. Call `await self._streams_context.__aenter__()` and assign to `read_stream, write_stream, _`
         # 3. Create `ClientSession(read_stream, write_stream)` and assign to `self._session_context`
@@ -26,7 +26,7 @@ class MCPClient:
         raise NotImplementedError()
 
     async def __aexit__(self, exc_type, exc_val, exc_tb):
-        #TODO:
+        # TODO:
         # This is shutdown method.
         # If session is present and session context is present as well then shutdown the session context (__aexit__ method with params)
         # If streams context is present then shutdown the streams context (__aexit__ method with params)
@@ -36,7 +36,7 @@ class MCPClient:
         """Get available tools from MCP server"""
         if not self.session:
             raise RuntimeError("MCP client not connected. Call connect() first.")
-        #TODO:
+        # TODO:
         # 1. Call `await self.session.list_tools()` and assign to `tools`
         # 2. Return list with dicts with tool schemas. It should be provided according to DIAL specification
         #    https://dialx.ai/dial_api#operation/sendChatCompletionRequest (request -> tools)
@@ -47,7 +47,7 @@ class MCPClient:
         if not self.session:
             raise RuntimeError("MCP client not connected. Call connect() first.")
 
-        #TODO:
+        # TODO:
         # 1. Call `await self.session.call_tool(tool_name, tool_args)` and assign to `tool_result: CallToolResult` variable
         # 2. Get `content` with index `0` from `tool_result` and assign to `content` variable
         # 3. print(f"    ⚙️: {content}\n")
@@ -59,7 +59,7 @@ class MCPClient:
         """Get available resources from MCP server"""
         if not self.session:
             raise RuntimeError("MCP client not connected.")
-        #TODO:
+        # TODO:
         # Wrap into try/except (not all MCP servers have resources), get `list_resources` (it is async) and resources
         # from it. In case of error print error and return an empty array
         raise NotImplementedError()
@@ -69,7 +69,7 @@ class MCPClient:
         if not self.session:
             raise RuntimeError("MCP client not connected.")
 
-        #TODO:
+        # TODO:
         # 1. Get resource by uri (uri is that we provided on the Server side "users-management://flow-diagram")
         # 2. Get contents of [0] resource
         # 3. ResourceContents has 2 types TextResourceContents and BlobResourceContents, in case if content is instance
@@ -83,7 +83,7 @@ class MCPClient:
         """Get available prompts from MCP server"""
         if not self.session:
             raise RuntimeError("MCP client not connected.")
-        #TODO:
+        # TODO:
         # Wrap into try/except (not all MCP servers have prompts), get `list_prompts` (it is async) and prompts
         # from it. In case of error print error and return an empty array
         raise NotImplementedError()
@@ -92,7 +92,7 @@ class MCPClient:
         """Get specific prompt content"""
         if not self.session:
             raise RuntimeError("MCP client not connected.")
-        #TODO:
+        # TODO:
         # 1. Get prompt by name
         # 2. Create variable `combined_content` with empty string
         # 3. Iterate through prompt result `messages` and:

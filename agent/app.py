@@ -14,8 +14,9 @@ from agent.prompts import SYSTEM_PROMPT
 # https://remote.mcpservers.org/fetch/mcp
 # Pay attention that `fetch` doesn't have resources and prompts
 
+
 async def main():
-    #TODO:
+    # TODO:
     # 1. Create MCP client and open connection to the MCP server (use `async with {YOUR_MCP_CLIENT} as mcp_client`),
     #    mcp_server_url="http://localhost:8005/mcp"
     # 2. Get Available MCP Resources and print them

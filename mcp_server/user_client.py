@@ -7,8 +7,8 @@ from models.user_info import UserUpdate, UserCreate
 
 USER_SERVICE_ENDPOINT = os.getenv("USERS_MANAGEMENT_SERVICE_URL", "http://localhost:8041")
 
-class UserClient:
 
+class UserClient:
     def __user_to_string(self, user: dict[str, Any]):
         user_str = "```\n"
         for key, value in user.items():
@@ -37,11 +37,11 @@ class UserClient:
         raise Exception(f"HTTP {response.status_code}: {response.text}")
 
     async def search_users(
-            self,
-            name: Optional[str] = None,
-            surname: Optional[str] = None,
-            email: Optional[str] = None,
-            gender: Optional[str] = None,
+        self,
+        name: Optional[str] = None,
+        surname: Optional[str] = None,
+        email: Optional[str] = None,
+        gender: Optional[str] = None,
     ) -> str:
         headers = {"Content-Type": "application/json"}
 
@@ -68,9 +68,7 @@ class UserClient:
         headers = {"Content-Type": "application/json"}
 
         response = requests.post(
-            url=f"{USER_SERVICE_ENDPOINT}/v1/users",
-            headers=headers,
-            json=user_create_model.model_dump()
+            url=f"{USER_SERVICE_ENDPOINT}/v1/users", headers=headers, json=user_create_model.model_dump()
         )
 
         if response.status_code == 201:
@@ -82,9 +80,7 @@ class UserClient:
         headers = {"Content-Type": "application/json"}
 
         response = requests.put(
-            url=f"{USER_SERVICE_ENDPOINT}/v1/users/{user_id}",
-            headers=headers,
-            json=user_update_model.model_dump()
+            url=f"{USER_SERVICE_ENDPOINT}/v1/users/{user_id}", headers=headers, json=user_update_model.model_dump()
         )
 
         if response.status_code == 201:
