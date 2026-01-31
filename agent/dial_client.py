@@ -1,11 +1,12 @@
-import json
 from collections import defaultdict
+import json
 from typing import Any
 
 from openai import AsyncAzureOpenAI
 
-from agent.models.message import Message, Role
 from agent.mcp_client import MCPClient
+from agent.models.message import Message
+from agent.models.message import Role
 
 
 class DialClient:
@@ -86,4 +87,30 @@ class DialClient:
         # 2. Get tool name and tool arguments (arguments is a JSON, don't forget about that)
         # 3. Wrap into try/except block and call mcp_client tool call. If succeed then add tool message (don't forget
         #    about tool call id), otherwise add tool message with error message (it kind of fallback strategy).
-        raise NotImplementedError()
+        if not ai_message.tool_calls:
+            return
+        for tool_call in ai_message.tool_calls:
+            tool_name = tool_call["function"]["name"]
+            tool_args_json = tool_call["function"]["arguments"]
+            tool_call_id = tool_call["id"]
+
+            try:
+                tool_args = json.loads(tool_args_json)
+                tool_response = await self.mcp_client.call_tool(tool_name=tool_name, tool_args=tool_args)
+
+                tool_message = Message(
+                    role=Role.TOOL,
+                    content=json.dumps(tool_response),
+                    tool_call_id=tool_call_id,
+                    name=tool_name,
+                )
+            except Exception as e:
+                error_message = f"Error calling tool {tool_name}: {str(e)}"
+                tool_message = Message(
+                    role=Role.TOOL,
+                    content=error_message,
+                    tool_call_id=tool_call_id,
+                    name=tool_name,
+                )
+
+            messages.append(tool_message)
